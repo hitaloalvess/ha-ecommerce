@@ -6,12 +6,12 @@
 
 
 @layer base {
-    html {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Cabin", sans-serif;
-           user-select: none;
-        list-style: none;
-    } 
+  html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cabin", sans-serif;
+    user-select: none;
+    list-style: none;
+  }
 }
