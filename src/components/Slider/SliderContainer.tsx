@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 
 interface ISlider {
-  children: ReactElement
+  children: ReactNode
 }
 
 const Slider = ({ children }: ISlider) => {

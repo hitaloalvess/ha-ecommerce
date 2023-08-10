@@ -1,5 +1,5 @@
 import {
-  ReactElement,
+  ReactNode,
   Ref,
   RefObject,
   forwardRef,
@@ -9,7 +9,7 @@ import {
 interface ISliderItem {
   id: string;
   saveRef?: (ref: RefObject<any>) => void;
-  children: ReactElement
+  children: ReactNode
 }
 
 const SliderItem = forwardRef(function SliderItem(

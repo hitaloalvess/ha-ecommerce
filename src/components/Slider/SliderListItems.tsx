@@ -1,11 +1,20 @@
-import { ReactElement, Children, useState, useRef, RefObject } from "react";
+import {
+  ReactNode,
+  Children,
+  useState,
+  useRef,
+  RefObject,
+  useEffect
+} from "react";
 import Slider from ".";
 
 interface ISliderListItems {
-  children: ReactElement[]
+  children: ReactNode[]
 }
 const SliderListItems = ({ children }: ISliderListItems) => {
+
   const [itemRefs, setItemRefs] = useState<RefObject<any>[]>([]);
+  const [currentBanner, setCurrentBanner] = useState(0);
 
   const handleRefStorage = (ref: RefObject<any>) => {
 
@@ -16,9 +25,28 @@ const SliderListItems = ({ children }: ISliderListItems) => {
     });
   }
 
+  const handleNextBanner = () => {
+    setCurrentBanner(prev => {
+      const newValue = prev + 1;
+
+      if (newValue >= itemRefs.length) return 0;
+
+      return newValue;
+    });
+  }
+
+  useEffect(() => {
+    const banner = itemRefs[currentBanner];
+
+    banner?.current.scrollIntoView({
+      behavior: 'smooth'
+    });
+
+  }, [currentBanner, itemRefs]);
+
   return (
     <div
-      className="w-fit h-full flex bg-yellow-400"
+      className="w-fit h-full flex bg-yellow-400 scroll-smooth"
     >
       {Children.map(children, (child, index) => {
 
@@ -34,6 +62,12 @@ const SliderListItems = ({ children }: ISliderListItems) => {
           </Slider.Item>
         )
       })}
+
+      <Slider.Button
+        handleClick={handleNextBanner}
+      >
+        {'>'}
+      </Slider.Button>
     </div>
   );
 };
