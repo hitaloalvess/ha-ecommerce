@@ -7,7 +7,7 @@ interface ISlider {
 const Slider = ({ children }: ISlider) => {
   return (
     <div
-      className="w-screen h-[600px] flex items-center bg-red-600"
+      className="w-screen h-[600px] flex items-center"
     >
       {children}
     </div>

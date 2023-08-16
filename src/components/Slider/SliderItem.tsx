@@ -1,39 +1,26 @@
 import {
+  HTMLAttributes,
   ReactNode,
-  Ref,
-  RefObject,
-  forwardRef,
-  useEffect,
 } from "react";
+import { twMerge } from "tailwind-merge";
 
-interface ISliderItem {
+interface ISliderItem extends HTMLAttributes<HTMLDivElement> {
   id: string;
-  saveRef?: (ref: RefObject<any>) => void;
-  children: ReactNode
+  children: ReactNode;
 }
 
-const SliderItem = forwardRef(function SliderItem(
-  { id, saveRef, children }: ISliderItem,
-  ref: Ref<HTMLDivElement>
-) {
+const SliderItem = ({ id, children, ...rest }: ISliderItem) => {
 
-  useEffect(() => {
-
-    if (saveRef) {
-      saveRef(ref as RefObject<HTMLDivElement>);
-    }
-
-  }, []);
 
   return (
     <div
       id={id}
-      className="w-screen h-full"
-      ref={ref}
+      {...rest}
+      className={twMerge("w-screen h-full", (rest.className || []))}
     >
       {children}
     </div>
   );
-});
+};
 
 export default SliderItem;
