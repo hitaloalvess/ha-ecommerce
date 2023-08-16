@@ -1,13 +1,15 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
-interface ISlider {
+interface ISlider extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-const Slider = ({ children }: ISlider) => {
+const Slider = ({ children, ...rest }: ISlider) => {
   return (
     <div
-      className="w-screen h-[600px] flex items-center"
+      {...rest}
+      className={twMerge(' relative w-screen h-[600px] flex items-center', (rest.className || []))}
     >
       {children}
     </div>

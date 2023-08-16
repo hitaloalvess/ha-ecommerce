@@ -1,17 +1,16 @@
-import { ReactNode } from "react";
+import { HTMLAttributes } from 'react';
 
-interface ISliderButton {
+interface ISliderButton extends HTMLAttributes<HTMLButtonElement> {
   handleClick: () => void;
-  children: ReactNode;
 }
 
-const SliderButton = ({ handleClick, children }: ISliderButton) => {
+const SliderButton = ({ handleClick, ...rest }: ISliderButton) => {
   return (
     <button
-      className="text-7xl text-green-500"
+      {...rest}
+      className="w-3 h-3 rounded-full bg-customWhite50% data-[active=true]:w-4 data-[active=true]:h-4 data-[active=true]:bg-white"
       onClick={handleClick}
     >
-      {children}
     </button>
   );
 };

@@ -15,7 +15,8 @@ export default {
         'customBlackPearl-950': '#040C1B',
         'customVulcan-950': '#0F141F',
         'customMirage-950': '#151B26',
-        'customBigStone-950': '#1A2841'
+        'customBigStone-950': '#1A2841',
+        'customWhite50%': 'rgba(255,255,255, 0.5)'
       }
     },
   },

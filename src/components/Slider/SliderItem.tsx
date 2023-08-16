@@ -5,7 +5,7 @@ import {
 import { twMerge } from "tailwind-merge";
 
 interface ISliderItem extends HTMLAttributes<HTMLDivElement> {
-  id: string;
+  id?: string;
   children: ReactNode;
 }
 
