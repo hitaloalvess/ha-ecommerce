@@ -9,7 +9,7 @@ const Slider = ({ children, ...rest }: ISlider) => {
   return (
     <div
       {...rest}
-      className={twMerge(' relative w-screen h-[600px] flex items-center', (rest.className || []))}
+      className={twMerge(' relative w-screen h-[560px] flex items-center', (rest.className || []))}
     >
       {children}
     </div>

@@ -9,7 +9,7 @@ const SliderControls = ({ children, ...rest }: ISliderControls) => {
   return (
     <div
       {...rest}
-      className={twMerge('absolute flex z-20', (rest.className || []))}
+      className={twMerge('absolute w-5 flex items-center z-20', (rest.className || []))}
     >
       {children}
     </div>

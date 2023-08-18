@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import banner1 from '@/assets/banners/spider-man/spider-man1.webp'
 import banner2 from '@/assets/banners/spider-man/spider-man2.jpg'
 import banner3 from '@/assets/banners/spider-man/spider-man3.jpg'
 import banner4 from '@/assets/banners/spider-man/spider-man4.jpg'
 
+import IBanner from './interfaces/IBanner';
 import Slider from '../Slider';
 
-const BannerSpiderMan = () => {
+const INTERVAL_BANNERS = 6; //4ms
+
+const BannerSpiderMan = ({ isVisible, keyValue }: IBanner) => {
+  console.log({ isVisible, keyValue });
 
   const [bgImages] = useState([
     {
@@ -33,10 +37,12 @@ const BannerSpiderMan = () => {
     }
   ]);
   const [currentBg, setCurrentBg] = useState(0);
+  // const intervalId = useRef<NodeJS.Timer | null>(null);
 
-  const handleNextBg = () => {
+  const handleNextBg = (nextPos?: number) => {
+
     setCurrentBg(prevBg => {
-      const newPosBg = prevBg + 1;
+      const newPosBg = nextPos ? nextPos : prevBg + 1;
 
       if (newPosBg > bgImages.length - 1) return 0;
 
@@ -44,15 +50,32 @@ const BannerSpiderMan = () => {
     })
   }
 
+  // useEffect(() => {
+
+  //   intervalId.current = setInterval(() => {
+  //     handleNextBg();
+  //   }, INTERVAL_BANNERS * 1000);
+
+  //   // return () => {
+  //   //   console.log('Destruindo banner');
+  //   //   if (intervalId.current) {
+  //   //     clearInterval(intervalId.current);
+  //   //   }
+  //   // }
+  // }, [])
+
   return (
-    <div className='relative w-full h-full'>
+
+    <div
+      className='relative w-full h-full'
+    >
       <Slider.Container>
 
 
         <Slider.ListItems currentItem={currentBg}>
           {
             bgImages.map(bg => (
-              <div key={bg.id} className='absolute top-0 left-0 w-full h-full'>
+              <div key={bg.id} className='absolute top-0 left-0 w-full h-full bg-center'>
                 <img
                   className='w-full h-full object-cover'
                   src={bg.src}
@@ -72,7 +95,7 @@ const BannerSpiderMan = () => {
               <Slider.Button
                 key={index}
                 data-active={currentBg === index}
-                handleClick={handleNextBg}
+                handleClick={() => handleNextBg(index)}
               />
 
             ))
@@ -81,6 +104,8 @@ const BannerSpiderMan = () => {
 
       </Slider.Container>
     </div>
+
+
   );
 };
 
