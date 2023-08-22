@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface IBannerData {
   id: string;
@@ -20,15 +20,12 @@ interface IBanner {
 
 import Slider from './Slider';
 
-// const INTERVAL_BANNERS = 6; //4ms
+const INTERVAL_BG = 8; //8ms
 
 const Banner = ({ data: { backgrounds } }: IBanner) => {
 
-  // const [bgImages] = useState([
-
-  // ]);
   const [currentBg, setCurrentBg] = useState(0);
-  // const intervalId = useRef<NodeJS.Timer | null>(null);
+  const intervalId = useRef<NodeJS.Timer | null>(null);
 
   const handleNextBg = (nextPos?: number) => {
 
@@ -41,19 +38,18 @@ const Banner = ({ data: { backgrounds } }: IBanner) => {
     })
   }
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   intervalId.current = setInterval(() => {
-  //     handleNextBg();
-  //   }, INTERVAL_BANNERS * 1000);
+    intervalId.current = setInterval(() => {
+      handleNextBg();
+    }, INTERVAL_BG * 1000);
 
-  //   // return () => {
-  //   //   console.log('Destruindo banner');
-  //   //   if (intervalId.current) {
-  //   //     clearInterval(intervalId.current);
-  //   //   }
-  //   // }
-  // }, [])
+    return () => {
+      if (intervalId.current) {
+        clearInterval(intervalId.current);
+      }
+    }
+  }, [])
 
   return (
 

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Slider from '@/components/Slider';
@@ -6,8 +6,10 @@ import Banner from '@/components/Banner';
 
 import { bannerList } from '@/data/banners';
 
+const INTERVAL_BANNERS = 30; //30ms
 const Carousel = () => {
   const [currentPosBanner, setCurrentPosBanner] = useState<number>(0);
+  const intervalId = useRef<NodeJS.Timer | null>(null);
 
   const handleNextBanner = () => {
     setCurrentPosBanner(prevBanner => {
@@ -20,6 +22,20 @@ const Carousel = () => {
   }
 
   const currentBanner = useMemo(() => bannerList[currentPosBanner], [currentPosBanner]);
+
+  useEffect(() => {
+
+    intervalId.current = setInterval(() => {
+      handleNextBanner();
+    }, INTERVAL_BANNERS * 1000);
+
+    return () => {
+      if (intervalId.current) {
+        clearInterval(intervalId.current);
+      }
+    }
+
+  }, []);
 
   return (
     <Slider.Container className='overflow-hidden'>
@@ -37,24 +53,30 @@ const Carousel = () => {
               initial: {
                 x: window.innerWidth,
                 opacity: 0,
+                transition: {
+                  opacity: { duration: 2 },
+                  x: { duration: 2 },
+                }
               },
               animate: {
                 x: 0,
                 opacity: 1,
                 transition: {
                   opacity: { duration: 2 },
-                  x: { duration: 2.5 },
+                  x: { duration: 2 },
                 }
               },
               exit: {
-                opacity: 0,
+                opacity: 1,
                 x: -window.innerWidth,
                 transition: {
-                  opacity: { duration: 3 },
-                  x: { duration: 2.5 }
+                  opacity: { duration: 2 },
+                  x: { duration: 2 },
+
                 }
               }
             }}
+          // transition={{ duration: 3 }}
           >
             <Banner
               data={currentBanner}
