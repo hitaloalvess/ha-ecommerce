@@ -1,41 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
-import banner1 from '@/assets/banners/spider-man/spider-man1.webp'
-import banner2 from '@/assets/banners/spider-man/spider-man2.jpg'
-import banner3 from '@/assets/banners/spider-man/spider-man3.jpg'
-import banner4 from '@/assets/banners/spider-man/spider-man4.jpg'
+interface IBannerData {
+  id: string;
+  title: string;
+  label: string;
+  backgrounds: {
+    id: string;
+    src: string;
+    alt: string;
+  }[];
+  coverSrc: string;
+  logoSrc: string;
+  description: string;
+}
 
-import IBanner from './interfaces/IBanner';
-import Slider from '../Slider';
+interface IBanner {
+  data: IBannerData
+}
 
-const INTERVAL_BANNERS = 6; //4ms
+import Slider from './Slider';
 
-const BannerSpiderMan = ({ isVisible, keyValue }: IBanner) => {
-  console.log({ isVisible, keyValue });
+// const INTERVAL_BANNERS = 6; //4ms
 
-  const [bgImages] = useState([
-    {
-      id: '1',
-      src: banner1,
-      alt: 'Banner 1 - Cena do jogo em que o homem aranha se prepara para atacar um inimigo'
-    },
-    {
-      id: '2',
-      src: banner2,
-      alt: 'Banner 2 - Cena do jogo em que o homem aranha está escalando uma parede com seu traje preto'
+const Banner = ({ data: { backgrounds } }: IBanner) => {
 
-    },
-    {
-      id: '3',
-      src: banner3,
-      alt: 'Banner 3 - Cena do jogo em que o homem aranha se prepara para chutar um inimigo'
-    },
-    {
-      id: '4',
-      src: banner4,
-      alt: 'Banner 4 - Cena do jogo em que homem aranha está pulando de um predio'
-    }
-  ]);
+  // const [bgImages] = useState([
+
+  // ]);
   const [currentBg, setCurrentBg] = useState(0);
   // const intervalId = useRef<NodeJS.Timer | null>(null);
 
@@ -44,7 +35,7 @@ const BannerSpiderMan = ({ isVisible, keyValue }: IBanner) => {
     setCurrentBg(prevBg => {
       const newPosBg = nextPos ? nextPos : prevBg + 1;
 
-      if (newPosBg > bgImages.length - 1) return 0;
+      if (newPosBg > backgrounds.length - 1) return 0;
 
       return newPosBg;
     })
@@ -74,7 +65,7 @@ const BannerSpiderMan = ({ isVisible, keyValue }: IBanner) => {
 
         <Slider.ListItems currentItem={currentBg}>
           {
-            bgImages.map(bg => (
+            backgrounds.map(bg => (
               <div key={bg.id} className='absolute top-0 left-0 w-full h-full bg-center'>
                 <img
                   className='w-full h-full object-cover'
@@ -91,7 +82,7 @@ const BannerSpiderMan = ({ isVisible, keyValue }: IBanner) => {
           className='absolute right-6 flex-col gap-11'
         >
           {
-            bgImages.map((_, index) => (
+            backgrounds.map((_, index) => (
               <Slider.Button
                 key={index}
                 data-active={currentBg === index}
@@ -109,4 +100,4 @@ const BannerSpiderMan = ({ isVisible, keyValue }: IBanner) => {
   );
 };
 
-export default BannerSpiderMan;
+export default Banner;
