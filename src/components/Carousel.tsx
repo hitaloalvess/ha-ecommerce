@@ -8,8 +8,9 @@ import { bannerList } from '@/data/banners';
 
 const INTERVAL_BANNERS = 30; //30ms
 const Carousel = () => {
-  const [currentPosBanner, setCurrentPosBanner] = useState<number>(0);
   const intervalId = useRef<NodeJS.Timer | null>(null);
+  const [currentPosBanner, setCurrentPosBanner] = useState<number>(0);
+  const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
 
   const handleNextBanner = () => {
     setCurrentPosBanner(prevBanner => {
@@ -27,7 +28,9 @@ const Carousel = () => {
 
     intervalId.current = setInterval(() => {
       handleNextBanner();
+      setShouldAnimate(true);
     }, INTERVAL_BANNERS * 1000);
+
 
     return () => {
       if (intervalId.current) {
@@ -46,37 +49,19 @@ const Carousel = () => {
         {
           <motion.div
             key={bannerList[currentPosBanner].id}
-            initial='initial'
-            animate='animate'
-            exit='exit'
-            variants={{
-              initial: {
-                x: window.innerWidth,
-                opacity: 0,
-                transition: {
-                  opacity: { duration: 2 },
-                  x: { duration: 2 },
-                }
-              },
-              animate: {
-                x: 0,
-                opacity: 1,
-                transition: {
-                  opacity: { duration: 2 },
-                  x: { duration: 2 },
-                }
-              },
-              exit: {
-                opacity: 1,
-                x: -window.innerWidth,
-                transition: {
-                  opacity: { duration: 2 },
-                  x: { duration: 2 },
-
-                }
-              }
+            initial={{
+              x: shouldAnimate ? window.innerWidth : 0,
+              opacity: 1,
             }}
-          // transition={{ duration: 3 }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 1,
+              x: -window.innerWidth,
+            }}
+            transition={{ duration: 2 }}
           >
             <Banner
               data={currentBanner}
