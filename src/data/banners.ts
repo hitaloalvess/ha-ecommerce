@@ -4,6 +4,8 @@ import spiderManBg1 from '@/assets/banners/spider-man/spider-man1.webp'
 import spiderManBg2 from '@/assets/banners/spider-man/spider-man2.jpg'
 import spiderManBg3 from '@/assets/banners/spider-man/spider-man3.jpg'
 import spiderManBg4 from '@/assets/banners/spider-man/spider-man4.jpg'
+import spiderManCover from '@/assets/banners/spider-man/spider-man-cover.svg';
+import spiderManLogo from '@/assets/banners/spider-man/spider-man-logo.svg';
 
 //Iron-Man
 import ironManBg1 from '@/assets/banners/iron-man/iron-man1.png';
@@ -45,8 +47,8 @@ export const bannerList = [
         alt: 'Banner 4 - Cena do jogo em que homem aranha está pulando de um predio'
       }
     ],
-    coverSrc: '',
-    logoSrc: '',
+    coverSrc: spiderManCover,
+    logoSrc: spiderManLogo,
     description: 'Lorem ipsum lorem ipsum, lorem ipsum lorem ipsum lorem ipsum.'
   },
   {

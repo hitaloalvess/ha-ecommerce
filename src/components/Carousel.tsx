@@ -24,21 +24,21 @@ const Carousel = () => {
 
   const currentBanner = useMemo(() => bannerList[currentPosBanner], [currentPosBanner]);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    intervalId.current = setInterval(() => {
-      handleNextBanner();
-      setShouldAnimate(true);
-    }, INTERVAL_BANNERS * 1000);
+  //   intervalId.current = setInterval(() => {
+  //     handleNextBanner();
+  //     setShouldAnimate(true);
+  //   }, INTERVAL_BANNERS * 1000);
 
 
-    return () => {
-      if (intervalId.current) {
-        clearInterval(intervalId.current);
-      }
-    }
+  //   return () => {
+  //     if (intervalId.current) {
+  //       clearInterval(intervalId.current);
+  //     }
+  //   }
 
-  }, []);
+  // }, []);
 
   return (
     <Slider.Container className='overflow-hidden'>
