@@ -12,6 +12,8 @@ import ironManBg1 from '@/assets/banners/iron-man/iron-man1.png';
 import ironManBg2 from '@/assets/banners/iron-man/iron-man2.jpg';
 import ironManBg3 from '@/assets/banners/iron-man/iron-man3.jpg';
 import ironManBg4 from '@/assets/banners/iron-man/iron-man4.jpg';
+import ironManCover from '@/assets/banners/iron-man/iron-man-cover.svg';
+import ironManLogo from '@/assets/banners/iron-man/iron-man-logo.svg';
 
 //God-Of-War
 import godOfWarBg1 from '@/assets/banners/god-of-war/god-of-war1.jpg';
@@ -78,8 +80,8 @@ export const bannerList = [
         alt: 'Banner 4 - Imagem do homem de ferro voando'
       }
     ],
-    coverSrc: '',
-    logoSrc: '',
+    coverSrc: ironManCover,
+    logoSrc: ironManLogo,
     description: 'Lorem ipsum lorem ipsum, lorem ipsum lorem ipsum lorem ipsum.'
   },
   {
