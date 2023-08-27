@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { IContentParams } from "./Contents/interfaces/IContentParams";
 import SpiderManContent from "./Contents/SpiderManContent";
 import IronManContent from "./Contents/IronManContent";
+import GodOfWarContent from "./Contents/GodOfWarContent";
 
 interface IContent {
   [key: string]: (props: IContentParams) => JSX.Element;
@@ -20,7 +21,8 @@ const BannerContent = ({ nameContent, imgCover, imgLogo, description }: IBannerC
   const CurrentContent = useMemo(() => {
     const contents: IContent = {
       'spider-man': SpiderManContent,
-      'iron-man': IronManContent
+      'iron-man': IronManContent,
+      'god-of-war': GodOfWarContent
     }
 
     return contents[nameContent];

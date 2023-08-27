@@ -20,6 +20,8 @@ import godOfWarBg1 from '@/assets/banners/god-of-war/god-of-war1.jpg';
 import godOfWarBg2 from '@/assets/banners/god-of-war/god-of-war2.jpg';
 import godOfWarBg3 from '@/assets/banners/god-of-war/god-of-war3.jpg';
 import godOfWarBg4 from '@/assets/banners/god-of-war/god-of-war4.webp';
+import godOfWarCover from '@/assets/banners/god-of-war/god-of-war-cover.svg';
+import godOfWarLogo from '@/assets/banners/god-of-war/god-of-war-logo.svg';
 
 export const bannerList = [
   {
@@ -111,8 +113,8 @@ export const bannerList = [
         alt: 'Banner 4 - Imagem do homem de ferro voando'
       }
     ],
-    coverSrc: '',
-    logoSrc: '',
+    coverSrc: godOfWarCover,
+    logoSrc: godOfWarLogo,
     description: 'Lorem ipsum lorem ipsum, lorem ipsum lorem ipsum lorem ipsum.'
   }
 ];

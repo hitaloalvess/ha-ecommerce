@@ -9,7 +9,7 @@ import { bannerList } from '@/data/banners';
 const INTERVAL_BANNERS = 30; //30ms
 const Carousel = () => {
   const intervalId = useRef<NodeJS.Timer | null>(null);
-  const [currentPosBanner, setCurrentPosBanner] = useState<number>(1);
+  const [currentPosBanner, setCurrentPosBanner] = useState<number>(2);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
 
   const handleNextBanner = () => {
