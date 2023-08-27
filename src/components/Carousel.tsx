@@ -6,39 +6,42 @@ import Banner from '@/components/Banner';
 
 import { bannerList } from '@/data/banners';
 
-const INTERVAL_BANNERS = 30; //30ms
+const INTERVAL_BANNERS = 10; //30ms
 const Carousel = () => {
   const intervalId = useRef<NodeJS.Timer | null>(null);
-  const [currentPosBanner, setCurrentPosBanner] = useState<number>(2);
+  const [currentPosBanner, setCurrentPosBanner] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
 
-  const handleNextBanner = () => {
+  const handleNextBanner = (newPos?: number) => {
+    const step = 1;
+
     setCurrentPosBanner(prevBanner => {
-      const newPosBanner = prevBanner + 1;
+      const newPosBanner = newPos ? prevBanner + newPos : prevBanner + step;
 
       if (newPosBanner > bannerList.length - 1) return 0;
 
       return newPosBanner
-    })
+    });
+
   }
 
   const currentBanner = useMemo(() => bannerList[currentPosBanner], [currentPosBanner]);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   intervalId.current = setInterval(() => {
-  //     handleNextBanner();
-  //     setShouldAnimate(true);
-  //   }, INTERVAL_BANNERS * 1000);
+    intervalId.current = setInterval(() => {
+      handleNextBanner();
+      setShouldAnimate(true);
+    }, INTERVAL_BANNERS * 1000);
 
 
-  //   return () => {
-  //     if (intervalId.current) {
-  //       clearInterval(intervalId.current);
-  //     }
-  //   }
+    return () => {
+      if (intervalId.current) {
+        clearInterval(intervalId.current);
+      }
+    }
 
-  // }, []);
+  }, []);
 
   return (
     <Slider.Container className='overflow-hidden'>

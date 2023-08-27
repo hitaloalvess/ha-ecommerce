@@ -41,7 +41,7 @@ const Banner = ({ data }: IBanner) => {
   const handleNextBg = (nextPos?: number) => {
 
     setCurrentBg(prevBg => {
-      const newPosBg = nextPos ? nextPos : prevBg + 1;
+      const newPosBg = nextPos || nextPos === 0 ? nextPos : prevBg + 1;
 
       if (newPosBg > backgrounds.length - 1) return 0;
 
@@ -49,18 +49,18 @@ const Banner = ({ data }: IBanner) => {
     })
   }
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   intervalId.current = setInterval(() => {
-  //     handleNextBg();
-  //   }, INTERVAL_BG * 1000);
+    intervalId.current = setInterval(() => {
+      handleNextBg();
+    }, INTERVAL_BG * 1000);
 
-  //   return () => {
-  //     if (intervalId.current) {
-  //       clearInterval(intervalId.current);
-  //     }
-  //   }
-  // }, [])
+    return () => {
+      if (intervalId.current) {
+        clearInterval(intervalId.current);
+      }
+    }
+  }, [])
 
   return (
 
