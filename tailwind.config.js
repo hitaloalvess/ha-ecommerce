@@ -17,6 +17,7 @@ export default {
         'customMirage-950': '#151B26',
         'customBigStone-950': '#1A2841',
         'customWhite50%': 'rgba(255,255,255, 0.5)',
+        'customBigStone60%': 'rgba(26, 40, 65, 0.60)',
       },
       gradientColorStops: {
         'shadow-dark': `rgba(4, 12, 27, 0.99) 5%, rgba(4, 12, 27, 0.75) 35%, rgba(4, 12, 27, 0.99) 100%`,

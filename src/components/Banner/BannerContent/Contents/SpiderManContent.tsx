@@ -1,3 +1,4 @@
+import BannerButton from "../../BannerButton";
 import { IContentParams } from "./interfaces/IContentParams";
 
 
@@ -9,23 +10,25 @@ const SpiderManContent = ({ imgCover, imgLogo, description }: IContentParams) =>
     <div
       className="relative w-full h-full flex items-center px-[120px] z-10"
     >
-      <div className="flex flex-col gap-11">
-        {/* Content */}
+      <div className="flex flex-col justify-center gap-11">
+
         <div className="w-[350px] flex flex-col justify-center gap-3">
-          {/* Title*/}
+
           <div className="w-full">
             <img src={imgLogo} alt="Logo do game Spider-Man" />
           </div>
 
-          <p
-            className="text-2xl text-primaryWhite"
-          >
+          <p className="text-lg text-primaryWhite">
             {description}
           </p>
         </div>
 
-        {/* Botão */}
-        <button className="bg-white ">Temporario</button>
+        <BannerButton
+          title="comprar"
+          secondaryTitle="+ informações"
+          clickMainBtn={() => console.log('Comprar Spider-man')}
+          clickSecondaryBtn={() => console.log('+ Informações Spider-man')}
+        />
       </div>
 
       <div
